@@ -8,7 +8,7 @@ import Data.Counter (Counter)
 import Data.Default
 import Data.Map (Map)
 import Data.Monoid
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
 
 data Classifier a b = Classifier { toMap :: Map a [Counter b] }
   deriving (Show, Read, Eq)
