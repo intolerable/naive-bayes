@@ -2,15 +2,18 @@ module Data.Classifier
   ( Classifier(..)
   , singleton
   , train
-  , documentCount ) where
+  , documentCount
+  , countInClass
+  , totalInClass ) where
 
 import Data.Counter (Counter)
 import Data.Default
 import Data.Map (Map)
 import Data.Monoid
 import qualified Data.Map.Strict as Map
+import qualified Data.Counter as Counter
 
-data Classifier a b = Classifier { toMap :: Map a [Counter b] }
+newtype Classifier a b = Classifier { toMap :: Map a [Counter b] }
   deriving (Show, Read, Eq)
 
 instance Ord a => Monoid (Classifier a b) where
@@ -29,3 +32,9 @@ train c v (Classifier m) = Classifier $ Map.insertWith (<>) c [v] m
 
 documentCount :: Classifier a b -> Integer
 documentCount (Classifier m) = fromIntegral $ length $ mconcat $ Map.elems m
+
+countInClass :: Ord b => Classifier a b -> Map a (Counter b)
+countInClass (Classifier m) = fmap mconcat m
+
+totalInClass :: Ord b => Classifier a b -> Counter a
+totalInClass = Counter.fromMap . fmap Counter.total . countInClass
