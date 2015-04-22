@@ -17,7 +17,7 @@ library
     Data.Classifier
     Data.Classifier.NaiveBayes
   build-depends:
-    base >=4.7 && <4.8,
+    base >=4.7 && <4.9,
     containers,
     data-counter,
     data-default
