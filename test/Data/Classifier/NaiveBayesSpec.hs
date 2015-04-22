@@ -1,6 +1,5 @@
 module Data.Classifier.NaiveBayesSpec where
 
---import qualified Data.Classifier as Classifier
 import Control.Applicative
 import Control.Monad
 import Data.Classifier (Classifier(..))
@@ -8,6 +7,7 @@ import Data.Classifier.NaiveBayes
 import Data.Counter (Counter)
 import Data.Map (Map)
 import Data.Monoid
+import Prelude
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck

@@ -6,10 +6,10 @@ import Data.Classifier (Classifier(..))
 import Data.Counter (Counter)
 import Data.Map (Map)
 import Data.Monoid
+import Prelude
 import Test.Hspec
 import Test.Hspec.QuickCheck
 import Test.QuickCheck
---import qualified Data.Classifier as Classifier
 import qualified Data.Counter as Counter
 import qualified Data.Map as Map
 

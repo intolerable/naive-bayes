@@ -6,7 +6,7 @@ module Data.Classifier.NaiveBayes
   , probabilities ) where
 
 import Data.Classifier
-import Data.Counter (Counter(Counter))
+import Data.Counter (Counter(..))
 import Data.List
 import Data.Map (Map)
 import Data.Monoid
