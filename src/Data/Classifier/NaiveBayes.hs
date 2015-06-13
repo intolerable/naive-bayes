@@ -9,7 +9,7 @@ import Data.Binary
 import Data.Classifier
 import Data.Counter (Counter(..))
 import Data.List
-import Data.Map (Map)
+import Data.Map.Strict (Map)
 import Data.Monoid
 import Data.Ord
 import Data.Ratio ((%))
