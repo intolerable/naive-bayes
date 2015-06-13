@@ -2,6 +2,7 @@ module Data.Classifier.NaiveBayesSpec where
 
 import Control.Applicative
 import Control.Monad
+import Data.Binary
 import Data.Classifier (Classifier(..))
 import Data.Classifier.NaiveBayes
 import Data.Counter (Counter)
@@ -44,6 +45,10 @@ spec =
         x <> mempty == x
       prop "x <> (y <> z) == (x <> y) <> z" $ \(x :: NaiveBayes Int String) y z ->
         x <> (y <> z) == (x <> y) <> z
+
+    describe "Binary" $ do
+      prop "decode . encode == id" $ \(x :: NaiveBayes String Int) ->
+        decode (encode x) == x
 
     describe "remove" $ do
       prop "remove x (x <> mempty) == mempty" $ \(x :: Classifier Int String) ->

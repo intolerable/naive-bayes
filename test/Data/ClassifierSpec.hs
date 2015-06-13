@@ -2,6 +2,7 @@ module Data.ClassifierSpec where
 
 import Control.Applicative
 import Control.Monad
+import Data.Binary
 import Data.Classifier (Classifier(..))
 import Data.Counter (Counter)
 import Data.Map (Map)
@@ -32,6 +33,10 @@ main = hspec spec
 spec :: Spec
 spec =
   describe "Classifier" $ do
+
+    describe "Binary" $ do
+      prop "decode . encode == id" $ \(x :: Classifier String Int) ->
+        decode (encode x) == x
 
     describe "Monoid" $ do
       prop "mempty <> x == x" $ \(x :: Classifier String Int) ->

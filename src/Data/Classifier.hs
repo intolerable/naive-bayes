@@ -6,6 +6,7 @@ module Data.Classifier
   , countInClass
   , totalInClass ) where
 
+import Data.Binary
 import Data.Counter (Counter)
 import Data.Default
 import Data.Map (Map)
@@ -14,7 +15,7 @@ import qualified Data.Map.Strict as Map
 import qualified Data.Counter as Counter
 
 newtype Classifier a b = Classifier { toMap :: Map a [Counter b] }
-  deriving (Show, Read, Eq)
+  deriving (Show, Read, Eq, Binary)
 
 instance Ord a => Monoid (Classifier a b) where
   mempty = Classifier mempty

@@ -5,6 +5,7 @@ module Data.Classifier.NaiveBayes
   , test
   , probabilities ) where
 
+import Data.Binary
 import Data.Classifier
 import Data.Counter (Counter(..))
 import Data.List
@@ -26,6 +27,14 @@ instance (Ord a, Ord b) => Monoid (NaiveBayes a b) where
   mempty = NaiveBayes mempty mempty mempty mempty
   NaiveBayes v1 ci1 t1 wc1 `mappend` NaiveBayes v2 ci2 t2 wc2 =
     NaiveBayes (v1 <> v2) (ci1 <> ci2) (t1 <> t2) (Map.unionWith (<>) wc1 wc2)
+
+instance (Binary a, Binary b) => Binary (NaiveBayes a b) where
+  get = NaiveBayes <$> get <*> get <*> get <*> get
+  put (NaiveBayes v c t w) = do
+    put v
+    put c
+    put t
+    put w
 
 fromClassifier :: (Ord a, Ord b) => Classifier a b -> NaiveBayes a b
 fromClassifier (Classifier m) = NaiveBayes v is t cs
