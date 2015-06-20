@@ -56,7 +56,7 @@ probabilities (NaiveBayes (Counter.toMap -> v) (Counter.toMap -> c) t w) (Counte
           Map.mergeWithKey (\ _ l' r' -> Just $ ((l' + 1) % l) ^ r') (const mempty) (fmap ((1 % l)^)) r m) divisors w
         divisors = fmap (+ totalUniqueWords) (Counter.toMap t)
 
-test :: (Ord a, Ord b, Show b) => NaiveBayes a b -> Counter b -> Maybe a
+test :: (Ord a, Ord b) => NaiveBayes a b -> Counter b -> Maybe a
 test cls cnt =
   case sortBy (comparing (Down . snd)) $ Map.toList $ probabilities cls cnt of
     [] -> Nothing
